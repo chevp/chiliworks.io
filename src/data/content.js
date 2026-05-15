@@ -1,5 +1,27 @@
 // Content sourced from https://www.chiliworks.ch/ as starting point.
-// Edit this file to update text across the site.
+// All images are deep-linked from the original chiliworks.ch CDN.
+
+const CW = 'https://www.chiliworks.ch/_assets'
+
+export const images = {
+  logo:      `${CW}/icon/Logo_Chiliworks.svg`,
+  favicon:   `${CW}/icon/icon_Chiliworks.png`,
+  hero:      `${CW}/img/eventservice/corporate/Firmenevents.jpg`,
+  show:      `${CW}/img/eventservice/corporate/show.jpg`,
+  studio:    `${CW}/img/eventservice/digital/studio.png`,
+  gestaltung:`${CW}/img/eventservice/eventgestaltung/eventgestaltung.png`,
+  lichtdesign:`${CW}/img/eventservice/lichtdesign/Corporate_Events_4.jpg`,
+  planung:   `${CW}/img/eventservice/planung/event_planung.jpg`,
+  technik:   `${CW}/img/eventtechnik/eventtechnik.png`,
+  install:   `${CW}/img/installation/festinstalation.jpg`,
+  team:      `${CW}/img/team/Christian_Chevillat.jpg`,
+  regie:     `${CW}/img/team/regie.jpeg`,
+  partners: {
+    svtb:        `${CW}/icon/svtb_logo.svg`,
+    ausbildung:  `${CW}/icon/Ausbildung-Veranstaltungstechniker-Lehrbetrieb.png`,
+    gobackstage: `${CW}/icon/go-backstage.svg`,
+  },
+}
 
 export const company = {
   name: 'Chiliworks',
@@ -32,7 +54,8 @@ export const services = [
   {
     key: 'eventservice',
     title: 'Eventservice',
-    icon: '🎤',
+    icon: 'fa-solid fa-microphone-lines',
+    image: images.planung,
     summary: 'Planung, Konzeption und Umsetzung Ihres Events – von der ersten Idee bis zum Abbau.',
     bullets: [
       'Konzeption und Eventplanung',
@@ -44,7 +67,8 @@ export const services = [
   {
     key: 'eventtechnik',
     title: 'Eventtechnik',
-    icon: '💡',
+    icon: 'fa-solid fa-lightbulb',
+    image: images.technik,
     summary: 'Audio, Licht, Video, Multimedia – moderne Technik in höchster Qualität.',
     bullets: [
       'Tontechnik (PA, Mikrofone, Mischpulte)',
@@ -56,7 +80,8 @@ export const services = [
   {
     key: 'festinstallationen',
     title: 'Festinstallationen',
-    icon: '🏛️',
+    icon: 'fa-solid fa-building',
+    image: images.install,
     summary: 'Fest installierte AV-Lösungen für Säle, Hotels, Restaurants und Konferenzräume.',
     bullets: [
       'Konzeption und Beratung',
@@ -69,8 +94,14 @@ export const services = [
 
 export const aboutShort = `Chiliworks verbindet die Anforderungen unserer Kundinnen und Kunden mit kreativen Lösungen — innerhalb des vorgegebenen Budgets. Unsere Expertise umfasst Veranstaltungstechnik in allen Disziplinen sowie visuelles Design.`
 
+export const values = [
+  { icon: 'fa-solid fa-bullseye',   title: 'Massgeschneidert', text: 'Lösungen, die zu Ihrem Event und Budget passen.' },
+  { icon: 'fa-solid fa-gears',      title: 'Erfahrung',        text: 'Erfahrenes Team mit Expertise in allen Disziplinen.' },
+  { icon: 'fa-solid fa-handshake',  title: 'Partnerschaftlich',text: 'Wir denken mit – von der ersten Skizze bis zum Abbau.' },
+]
+
 export const partners = [
-  { name: 'SVTB', file: 'svtb_logo.svg' },
-  { name: 'Ausbildungsbetrieb Veranstaltungstechniker', file: 'Ausbildung-Veranstaltungstechniker-Lehrbetrieb.png' },
-  { name: 'Go Backstage', file: 'go-backstage.svg' },
+  { name: 'SVTB',                                       src: images.partners.svtb },
+  { name: 'Ausbildungsbetrieb Veranstaltungstechniker', src: images.partners.ausbildung },
+  { name: 'Go Backstage',                               src: images.partners.gobackstage },
 ]

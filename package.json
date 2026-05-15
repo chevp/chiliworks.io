@@ -1,6 +1,6 @@
 {
   "name": "chiliworks.io",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Chiliworks - Veranstaltungstechnik website (Vue 3 + Vite, GitHub Pages)",
   "type": "module",
   "scripts": {

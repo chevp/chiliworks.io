@@ -1,7 +1,7 @@
 <script setup>
 import HeroSection from '../components/HeroSection.vue'
 import ServiceCard from '../components/ServiceCard.vue'
-import { services, aboutShort, contact } from '../data/content.js'
+import { services, aboutShort, contact, images } from '../data/content.js'
 </script>
 
 <template>
@@ -28,12 +28,17 @@ import { services, aboutShort, contact } from '../data/content.js'
   <section class="section bg-ink-800">
     <div class="container-narrow grid md:grid-cols-2 gap-12 items-center">
       <div>
-        <h2 class="text-3xl md:text-4xl font-bold mb-6">Über uns</h2>
+        <p class="text-chili-400 uppercase tracking-widest text-xs mb-3">
+          <i class="fa-solid fa-circle-info mr-2"></i>Über uns
+        </p>
+        <h2 class="text-3xl md:text-4xl font-bold mb-6">Wer wir sind</h2>
         <p class="text-white/80 leading-relaxed">{{ aboutShort }}</p>
-        <router-link to="/ueber-uns" class="btn-secondary mt-8">Mehr erfahren</router-link>
+        <router-link to="/ueber-uns" class="btn-secondary mt-8">
+          <i class="fa-solid fa-arrow-right mr-2"></i>Mehr erfahren
+        </router-link>
       </div>
-      <div class="bg-gradient-to-br from-chili-600 to-ink-900 rounded-xl aspect-video flex items-center justify-center text-6xl">
-        🎛️
+      <div class="rounded-xl overflow-hidden aspect-video">
+        <img :src="images.regie" alt="Regie" class="w-full h-full object-cover" loading="lazy" />
       </div>
     </div>
   </section>
@@ -43,8 +48,12 @@ import { services, aboutShort, contact } from '../data/content.js'
       <h2 class="text-3xl md:text-4xl font-bold mb-4">Bereit für Ihr nächstes Event?</h2>
       <p class="text-white/70 mb-8">Wir freuen uns auf Ihre Anfrage.</p>
       <div class="flex flex-wrap justify-center gap-4">
-        <a :href="contact.emailLink" class="btn-primary">{{ contact.email }}</a>
-        <a :href="contact.phoneLink" class="btn-secondary">{{ contact.phone }}</a>
+        <a :href="contact.emailLink" class="btn-primary">
+          <i class="fa-solid fa-envelope mr-2"></i>{{ contact.email }}
+        </a>
+        <a :href="contact.phoneLink" class="btn-secondary">
+          <i class="fa-solid fa-phone mr-2"></i>{{ contact.phone }}
+        </a>
       </div>
     </div>
   </section>

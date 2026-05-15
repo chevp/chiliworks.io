@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue'
-import { nav, company } from '../data/content.js'
+import { nav, company, images } from '../data/content.js'
 
 const open = ref(false)
 </script>
@@ -9,10 +9,8 @@ const open = ref(false)
   <header class="sticky top-0 z-40 bg-ink-900/85 backdrop-blur border-b border-white/10">
     <div class="container-narrow flex items-center justify-between py-4 px-6">
       <router-link to="/" class="flex items-center gap-3 group">
-        <span class="text-2xl">🌶️</span>
-        <span class="text-xl font-bold tracking-tight group-hover:text-chili-400 transition-colors">
-          {{ company.name }}
-        </span>
+        <img :src="images.logo" :alt="company.name" class="h-9 w-auto" />
+        <span class="sr-only">{{ company.name }}</span>
       </router-link>
 
       <nav class="hidden md:flex items-center gap-7">
@@ -32,10 +30,7 @@ const open = ref(false)
         @click="open = !open"
         aria-label="Menü"
       >
-        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-            :d="open ? 'M6 18L18 6M6 6l12 12' : 'M4 6h16M4 12h16M4 18h16'" />
-        </svg>
+        <i :class="open ? 'fa-solid fa-xmark' : 'fa-solid fa-bars'" class="text-xl"></i>
       </button>
     </div>
 
