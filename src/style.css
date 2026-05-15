@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+@theme {
+  --color-chili-50:  #fff5f5;
+  --color-chili-100: #ffe3e3;
+  --color-chili-200: #ffc9c9;
+  --color-chili-300: #ffa8a8;
+  --color-chili-400: #ff8787;
+  --color-chili-500: #e63946;
+  --color-chili-600: #c81d25;
+  --color-chili-700: #a4161a;
+  --color-chili-800: #7a0a0a;
+  --color-chili-900: #3d0000;
+
+  --color-ink-700: #2a2a2d;
+  --color-ink-800: #1a1a1c;
+  --color-ink-900: #0f0f10;
+}
+
+html { scroll-behavior: smooth; }
+body { font-family: 'Inter', system-ui, sans-serif; }
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.375rem;
+  background-color: var(--color-chili-500);
+  color: #fff;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+.btn-primary:hover { background-color: var(--color-chili-600); }
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.375rem;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #fff;
+  font-weight: 600;
+  transition: border-color 0.2s;
+}
+.btn-secondary:hover { border-color: rgba(255, 255, 255, 0.6); }
+
+.section { padding: 5rem 1.5rem; }
+.container-narrow { max-width: 72rem; margin-left: auto; margin-right: auto; }
