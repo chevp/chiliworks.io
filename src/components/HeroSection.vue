@@ -14,12 +14,23 @@ import { company, images } from '../data/content.js'
     <div class="absolute inset-0 bg-[radial-gradient(circle_at_30%_25%,rgba(230,57,70,0.35),transparent_60%)]"></div>
 
     <div class="relative container-narrow px-6 py-32 md:py-44 text-center">
-      <p class="uppercase tracking-[0.3em] text-chili-300 text-xs md:text-sm mb-4">
-        <i class="fa-solid fa-bolt mr-2"></i>Veranstaltungstechnik
+      <p class="uppercase tracking-[0.4em] text-chili-300 text-xs md:text-sm mb-6">
+        <i class="fa-solid fa-bolt mr-2"></i>Chiliworks
       </p>
-      <h1 class="text-4xl md:text-6xl font-extrabold text-white leading-tight mb-6 drop-shadow-lg">
-        {{ company.tagline }}
+
+      <h1 class="hero-headline">
+        <span class="block">{{ company.headline }}</span>
       </h1>
+
+      <ul class="flex flex-wrap justify-center items-center gap-x-3 gap-y-3 mt-8 mb-10">
+        <li v-for="(m, i) in company.modes" :key="m.label" class="flex items-center gap-3">
+          <span class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/15 backdrop-blur text-white font-semibold tracking-wide">
+            <i :class="m.icon" class="text-chili-400"></i>{{ m.label }}
+          </span>
+          <i v-if="i < company.modes.length - 1" class="fa-solid fa-circle text-chili-500 text-[6px]" aria-hidden="true"></i>
+        </li>
+      </ul>
+
       <p class="text-lg md:text-xl text-white/85 max-w-2xl mx-auto mb-10">
         {{ company.subtagline }}
       </p>

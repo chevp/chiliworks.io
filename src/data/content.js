@@ -25,8 +25,14 @@ export const images = {
 
 export const company = {
   name: 'Chiliworks',
+  headline: 'Veranstaltungstechnik',
   tagline: 'Veranstaltungstechnik Live | Hybrid | Digital',
   subtagline: 'Planen Sie Ihren nächsten Event mit uns',
+  modes: [
+    { label: 'Live',    icon: 'fa-solid fa-tower-broadcast' },
+    { label: 'Hybrid',  icon: 'fa-solid fa-shuffle' },
+    { label: 'Digital', icon: 'fa-solid fa-display' },
+  ],
 }
 
 export const contact = {
