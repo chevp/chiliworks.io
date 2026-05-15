@@ -1,5 +1,20 @@
 <script setup>
+import { reactive } from 'vue'
 import { contact } from '../data/content.js'
+
+const form = reactive({ name: '', email: '', message: '' })
+
+function onSubmit() {
+  const subject = `Eventanfrage von ${form.name}`
+  const body =
+    `Name: ${form.name}\n` +
+    `E-Mail: ${form.email}\n\n` +
+    `Nachricht:\n${form.message}\n`
+  const href =
+    `${contact.emailLink}?subject=${encodeURIComponent(subject)}` +
+    `&body=${encodeURIComponent(body)}`
+  window.location.href = href
+}
 </script>
 
 <template>
@@ -35,29 +50,27 @@ import { contact } from '../data/content.js'
 
       <form
         class="bg-ink-800 border border-white/10 rounded-xl p-6 space-y-4"
-        :action="contact.emailLink"
-        method="post"
-        enctype="text/plain"
+        @submit.prevent="onSubmit"
       >
         <div>
           <label class="block text-sm text-white/70 mb-1" for="name">
             <i class="fa-solid fa-user mr-2 text-chili-400"></i>Name
           </label>
-          <input id="name" name="name" type="text" required
+          <input id="name" v-model="form.name" type="text" required
                  class="w-full px-3 py-2 rounded bg-ink-900 border border-white/10 focus:border-chili-500 outline-none" />
         </div>
         <div>
           <label class="block text-sm text-white/70 mb-1" for="email">
             <i class="fa-solid fa-envelope mr-2 text-chili-400"></i>E-Mail
           </label>
-          <input id="email" name="email" type="email" required
+          <input id="email" v-model="form.email" type="email" required
                  class="w-full px-3 py-2 rounded bg-ink-900 border border-white/10 focus:border-chili-500 outline-none" />
         </div>
         <div>
           <label class="block text-sm text-white/70 mb-1" for="message">
             <i class="fa-solid fa-comment mr-2 text-chili-400"></i>Nachricht
           </label>
-          <textarea id="message" name="message" rows="5" required
+          <textarea id="message" v-model="form.message" rows="5" required
                     class="w-full px-3 py-2 rounded bg-ink-900 border border-white/10 focus:border-chili-500 outline-none"></textarea>
         </div>
         <button type="submit" class="btn-primary w-full">
