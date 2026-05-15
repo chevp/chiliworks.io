@@ -1,85 +1,83 @@
 <script setup>
-import { reactive } from 'vue'
-import { contact } from '../data/content.js'
+import { contact, images } from '../data/content.js'
 
-const form = reactive({ name: '', email: '', message: '' })
+const mapHref =
+  `https://www.google.com/maps/search/?api=1&query=` +
+  encodeURIComponent(`${contact.address.street}, ${contact.address.zip} ${contact.address.city}, ${contact.address.country}`)
 
-function onSubmit() {
-  const subject = `Eventanfrage von ${form.name}`
-  const body =
-    `Name: ${form.name}\n` +
-    `E-Mail: ${form.email}\n\n` +
-    `Nachricht:\n${form.message}\n`
-  const href =
-    `${contact.emailLink}?subject=${encodeURIComponent(subject)}` +
-    `&body=${encodeURIComponent(body)}`
-  window.location.href = href
-}
+const mailtoHref =
+  `${contact.emailLink}?subject=${encodeURIComponent('Eventanfrage über chiliworks.io')}` +
+  `&body=${encodeURIComponent('Hallo Chiliworks,\n\nich plane folgendes Event:\n\n- Datum:\n- Ort:\n- Teilnehmerzahl:\n- Was wir brauchen:\n\nFreundliche Grüsse,\n')}`
 </script>
 
 <template>
+  <section class="relative">
+    <img :src="images.regie" alt="" class="absolute inset-0 w-full h-full object-cover" />
+    <div class="absolute inset-0 bg-gradient-to-b from-ink-900/70 via-ink-900/85 to-ink-900"></div>
+    <div class="relative container-narrow px-6 py-24 text-center">
+      <p class="text-chili-400 uppercase tracking-[0.3em] text-xs mb-3">
+        <i class="fa-solid fa-envelope mr-2"></i>Kontakt
+      </p>
+      <h1 class="text-4xl md:text-5xl font-extrabold mb-4">Reden wir über Ihr Event</h1>
+      <p class="text-white/85 max-w-2xl mx-auto">
+        Erzählen Sie uns von Ihrem Vorhaben — wir antworten in der Regel innerhalb eines Werktages.
+      </p>
+    </div>
+  </section>
+
   <section class="section">
-    <div class="container-narrow grid md:grid-cols-2 gap-12">
-      <div>
-        <p class="text-chili-400 uppercase tracking-widest text-xs mb-3">
-          <i class="fa-solid fa-envelope mr-2"></i>Kontakt
+    <div class="container-narrow grid md:grid-cols-3 gap-6">
+      <a :href="mailtoHref"
+         class="group bg-ink-800 border border-white/10 rounded-xl p-8 hover:border-chili-500 transition-colors">
+        <i class="fa-solid fa-envelope text-chili-400 text-4xl mb-4 block"></i>
+        <h2 class="font-bold text-xl mb-2">E-Mail</h2>
+        <p class="text-white/70 text-sm mb-4">
+          Schreiben Sie uns mit ein paar Eckdaten zu Ihrem Event – wir melden uns mit Vorschlag.
         </p>
-        <h1 class="text-4xl md:text-5xl font-extrabold mb-6">Schreiben Sie uns</h1>
-        <p class="text-white/80 mb-8">
-          Erzählen Sie uns von Ihrem Event – wir melden uns mit einem unverbindlichen Vorschlag.
-        </p>
+        <span class="inline-flex items-center gap-2 text-chili-400 group-hover:text-chili-300 font-semibold">
+          {{ contact.email }} <i class="fa-solid fa-arrow-right"></i>
+        </span>
+      </a>
 
-        <ul class="space-y-4 text-white/90">
-          <li class="flex items-start gap-3">
-            <i class="fa-solid fa-phone text-chili-400 mt-1"></i>
-            <a :href="contact.phoneLink" class="hover:text-chili-400">{{ contact.phone }}</a>
-          </li>
-          <li class="flex items-start gap-3">
-            <i class="fa-solid fa-envelope text-chili-400 mt-1"></i>
-            <a :href="contact.emailLink" class="hover:text-chili-400">{{ contact.email }}</a>
-          </li>
-          <li class="flex items-start gap-3">
-            <i class="fa-solid fa-location-dot text-chili-400 mt-1"></i>
-            <span>
-              {{ contact.address.street }}<br />
-              {{ contact.address.zip }} {{ contact.address.city }}, {{ contact.address.country }}
-            </span>
-          </li>
-        </ul>
-      </div>
-
-      <form
-        class="bg-ink-800 border border-white/10 rounded-xl p-6 space-y-4"
-        @submit.prevent="onSubmit"
-      >
-        <div>
-          <label class="block text-sm text-white/70 mb-1" for="name">
-            <i class="fa-solid fa-user mr-2 text-chili-400"></i>Name
-          </label>
-          <input id="name" v-model="form.name" type="text" required
-                 class="w-full px-3 py-2 rounded bg-ink-900 border border-white/10 focus:border-chili-500 outline-none" />
-        </div>
-        <div>
-          <label class="block text-sm text-white/70 mb-1" for="email">
-            <i class="fa-solid fa-envelope mr-2 text-chili-400"></i>E-Mail
-          </label>
-          <input id="email" v-model="form.email" type="email" required
-                 class="w-full px-3 py-2 rounded bg-ink-900 border border-white/10 focus:border-chili-500 outline-none" />
-        </div>
-        <div>
-          <label class="block text-sm text-white/70 mb-1" for="message">
-            <i class="fa-solid fa-comment mr-2 text-chili-400"></i>Nachricht
-          </label>
-          <textarea id="message" v-model="form.message" rows="5" required
-                    class="w-full px-3 py-2 rounded bg-ink-900 border border-white/10 focus:border-chili-500 outline-none"></textarea>
-        </div>
-        <button type="submit" class="btn-primary w-full">
-          <i class="fa-solid fa-paper-plane mr-2"></i>Anfrage senden
-        </button>
-        <p class="text-xs text-white/50">
-          Hinweis: Demo-Formular – öffnet Ihr Mailprogramm mit den Daten.
+      <a :href="contact.phoneLink"
+         class="group bg-ink-800 border border-white/10 rounded-xl p-8 hover:border-chili-500 transition-colors">
+        <i class="fa-solid fa-phone text-chili-400 text-4xl mb-4 block"></i>
+        <h2 class="font-bold text-xl mb-2">Telefon</h2>
+        <p class="text-white/70 text-sm mb-4">
+          Direkter Draht für kurzfristige Anfragen und persönliche Beratung.
         </p>
-      </form>
+        <span class="inline-flex items-center gap-2 text-chili-400 group-hover:text-chili-300 font-semibold">
+          {{ contact.phone }} <i class="fa-solid fa-arrow-right"></i>
+        </span>
+      </a>
+
+      <a :href="mapHref" target="_blank" rel="noopener"
+         class="group bg-ink-800 border border-white/10 rounded-xl p-8 hover:border-chili-500 transition-colors">
+        <i class="fa-solid fa-location-dot text-chili-400 text-4xl mb-4 block"></i>
+        <h2 class="font-bold text-xl mb-2">Standort</h2>
+        <p class="text-white/70 text-sm mb-4">
+          Besuchen Sie uns nach Vereinbarung in unserem Lager und Showroom in Arlesheim.
+        </p>
+        <span class="not-italic inline-flex flex-col gap-0 text-chili-400 group-hover:text-chili-300 font-semibold">
+          <span>{{ contact.address.street }}</span>
+          <span>{{ contact.address.zip }} {{ contact.address.city }}</span>
+        </span>
+      </a>
+    </div>
+
+    <div class="container-narrow mt-12 bg-ink-800 border border-white/10 rounded-xl p-8">
+      <h3 class="font-bold text-lg mb-4">
+        <i class="fa-solid fa-circle-info text-chili-400 mr-2"></i>Damit es schnell geht
+      </h3>
+      <p class="text-white/70 text-sm mb-4">
+        Falls Sie uns schreiben, helfen uns folgende Angaben bei einer raschen Rückmeldung:
+      </p>
+      <ul class="grid sm:grid-cols-2 gap-2 text-sm text-white/80">
+        <li><i class="fa-solid fa-calendar text-chili-400 mr-2"></i>Datum / Zeitraum</li>
+        <li><i class="fa-solid fa-location-pin text-chili-400 mr-2"></i>Veranstaltungsort</li>
+        <li><i class="fa-solid fa-users text-chili-400 mr-2"></i>Erwartete Teilnehmerzahl</li>
+        <li><i class="fa-solid fa-list-check text-chili-400 mr-2"></i>Benötigte Leistungen (Ton, Licht, Video, …)</li>
+      </ul>
     </div>
   </section>
 </template>
